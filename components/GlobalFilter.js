@@ -14,7 +14,7 @@ const GlobalFilter = ({ filter, setFilter }) => {
   }, 1000);
 
   return (
-    <span>
+    <span className='label-container'>
       Search:{' '}
       <input
         type="text"
@@ -23,6 +23,7 @@ const GlobalFilter = ({ filter, setFilter }) => {
           setValue(e.target.value);
           onChange(e.target.value);
         }}
+        className="input-container"
       />
     </span>
   );

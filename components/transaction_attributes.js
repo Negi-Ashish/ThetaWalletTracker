@@ -1,5 +1,4 @@
-import { format } from "date-fns";
-
+import Link from 'next/link'
 export const COLUMNS_2 = [
   {
     Header: "From",
@@ -38,10 +37,18 @@ export const COLUMNS_2 = [
     Footer: "Tfuel Received",
   },
   {
-    Header: "Fee",
+    Header: "Transaction Fee",
     accessor: "fee",
-    Footer: "Fee",
+    Footer: "Transaction Fee",
     disableFilters: true,
+    Cell: ({ value }) => {
+      // console.log("FEE",(Math.round(value * 100) / 100).toFixed(2)=="NaN")
+      if((Math.round(value * 100) / 100).toFixed(2)=="NaN"==true){
+        return "Fee"
+      }
+      return `~${(Math.round(value * 100) / 100).toFixed(2)} `;
+      
+    }
     // Filter: ColumnFilter
   },
   {
@@ -59,9 +66,31 @@ export const COLUMNS_2 = [
       return `${date1.getDate()}-${date1.getMonth()+1}-${date1.getFullYear()}`;
       
     }
-  //   Cell: ({ value }) => {
-  //     return format(new Date(value), 'dd/MM/yyyy');
-  // }
-    // Filter: ColumnFilter
   },
+  {
+    Header: "View Transaction",
+    accessor: "view_transaction",
+    Footer: "View Transaction",
+    // Filter: ColumnFilter,
+    disableFilters: true,
+    Cell: ({ value }) => {
+      let URL;
+      if(value == undefined){
+        URL = `https://explorer.thetatoken.org/txs/`
+      }
+      else{
+        URL = `https://explorer.thetatoken.org/txs/${value}`
+      }
+      return (
+        <Link href={URL} passHref>
+          <a target="_blank" rel="noopener noreferrer">
+          view
+          </a>
+        </Link>
+        )
+      
+    }
+  },
+  
+  
 ];

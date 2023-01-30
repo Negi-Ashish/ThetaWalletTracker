@@ -12,7 +12,7 @@ import WalletTracker from '../components/WalletTracker';
 export default function Home() {
   return (
     <div className={classes.container}>
-      <h1>Wallet Tracker Beta</h1>
+      <h1>Wallet Tracker (BETA)</h1>
       {/* <BasicTable /> */}
       <WalletTracker/>
       {/* <GroupTable /> */}

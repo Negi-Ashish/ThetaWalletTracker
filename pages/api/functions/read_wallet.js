@@ -18,7 +18,6 @@ async function fetch_wallet_history(wallet_address) {
         let result = res.data;
         // console.log(i==0?"coinbase":i==1?"slash":i==2?"send":i==3?"reserve":i==4?"release":i==5?"service":i==6?"split":i==7?"smart contract":i==8?"deposit stake":i==9?"withdraw stake":"unknown");
         if (result.body && result.body.length > 0) {
-          // console.log("no_of_txn",result.body.length);
           for (let j = 0; j < result.body.length; j++) {
             //Define Universal Structure to be pushed and then write differnet cases for each 
             let store_object = {
@@ -31,10 +30,11 @@ async function fetch_wallet_history(wallet_address) {
               "timestamp":"",
               "NFT":""   
             }
-  
+
             if(i==1){
             }
             if(i==2){
+              // console.log("1",result.body[j]);
               store_object.txn_type = "send transaction";
               store_object.block_height = result.body[j]["block_height"];
               store_object.from_body = result.body[j]["data"]["inputs"];
@@ -52,33 +52,35 @@ async function fetch_wallet_history(wallet_address) {
               history.push(store_object);
             }
             if(i==3){
-  
+
             }
             if(i==4){
-  
+
             }
             if(i==6){
-  
+
             }
             if(i==7){
-  
+
             }
             if(i==8){
-  
+
             } 
             if(i==9){
-  
+
             }    
           }
   
           if(result.totalPageNumber>1){
+            
               //console.log(result.totalPageNumber);
               //console.log("It is True for",i==0?"coinbase":i==1?"slash":i==2?"send":i==3?"reserve":i==4?"release":i==5?"service":i==6?"split":i==7?"smart contract":i==8?"deposit stake":i==9?"withdraw stake":"unknown");
               for(let pgnNo=2; pgnNo<=result.totalPageNumber ; pgnNo++){//directly starting from second page
+                  console.log("PageNo:",pgnNo)
                   qString = `?type=${type}&pageNumber=${pgnNo}&limitNumber=${limitNumber}&isEqualType=${isEqualType}`;
                   let res2 = await axios.get(url + qString);
                   let result2 = res2.data;
-  
+                  // console.log(pgnNo,result.body[j]["block_height"]);
                   if (result2.body && result2.body.length > 0) {
                       // console.log("extra no_of_txn",result2.body.length);
                       for (let j = 0; j < result2.body.length; j++) {
@@ -98,14 +100,15 @@ async function fetch_wallet_history(wallet_address) {
               
                         }
                         if(i==2){
+                          //console.log(pgnNo,result2.body[j]["block_height"]);
                           // console.log(result.body[j])
                           store_object.txn_type = "send transaction";
-                          store_object.block_height = result.body[j]["block_height"];
-                          store_object.from_body = result.body[j]["data"]["inputs"];
-                          store_object.to_body = result.body[j]["data"]["outputs"];
-                          store_object.hash = result.body[j]["hash"];
-                          store_object.fee = result.body[j]["data"]["fee"];
-                          store_object.timestamp = result.body[j]["timestamp"];
+                          store_object.block_height = result2.body[j]["block_height"];
+                          store_object.from_body = result2.body[j]["data"]["inputs"];
+                          store_object.to_body = result2.body[j]["data"]["outputs"];
+                          store_object.hash = result2.body[j]["hash"];
+                          store_object.fee = result2.body[j]["data"]["fee"];
+                          store_object.timestamp = result2.body[j]["timestamp"];
                           store_object.NFT = null;
   
                           if(store_object.from_body.length>1 || store_object.to_body.length>1){
@@ -158,6 +161,7 @@ async function fetch_wallet_history(wallet_address) {
         }],
         "block_height":"INVALID INPUT",
         "timestamp":"INVALID INPUT",
+        "view_transaction": null
 
       }];
       return error_obj;
@@ -180,6 +184,7 @@ export default async (wallet_address) => {
         "fee":"INVALID ADDRESS",
         "block_height":"INVALID ADDRESS",
         "timestamp":Date.now(),
+        "view_transaction": null
       }];
       return error_obj;
     }
@@ -224,6 +229,7 @@ export default async (wallet_address) => {
           "fee":from_tf_amt-to_tf_amt,
           "block_height":history[m].block_height,
           "timestamp":history[m].timestamp,
+          "view_transaction":history[m].hash,
         }
 
         display_info.push(obj);
@@ -243,6 +249,7 @@ export default async (wallet_address) => {
       "fee":"Contact Admin",
       "block_height":"Contact Admin",
       "timestamp":Date.now(),
+      "view_transaction":null,
     }];
     return error_obj;
   }

@@ -4,6 +4,7 @@ import { COLUMNS_2 } from "./transaction_attributes";
 import MOCK_DATA from "./transaction_data.json";
 import { useState } from "react";
 import ColumnFilter from "./ColumnFilter";
+import GlobalFilter from './GlobalFilter';
 
 const WalletTracker = (props) => {
   let columns = useMemo(() => COLUMNS_2, []);
@@ -56,10 +57,11 @@ const WalletTracker = (props) => {
   return (
     <div className="table-container">
       <form onSubmit={fetchTxn}>
-        <label htmlFor="wallet_address">Wallet Address: </label>
-        <input type="text" id="wallet_address" name="wallet_address" required />
-        <button type="submit">Track</button>
+        <label className="label-container" htmlFor="wallet_address">Wallet Address : </label>
+        <input  className="input-container" type="text" id="wallet_address" placeholder="Enter Wallet Address" name="wallet_address" required />
+        <button className="button-container" type="submit">Track</button>
       </form>
+      
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -101,6 +103,8 @@ const WalletTracker = (props) => {
           ))}
         </tfoot>
       </table>
+      <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+
     </div>
   );
 };

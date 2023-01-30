@@ -8,7 +8,8 @@
     "tfuel_received": "In receiver wallet",
     "fee":  "Tax payed by sender",
     "block_height":  "Related to the transaction",
-    "timestamp": "1662170355"
+    "timestamp": "1662170355",
+    "view_transaction": null
   },
   {
     "from": "Sender",
@@ -19,7 +20,8 @@
     "tfuel_received": "In receiver wallet",
     "fee":  "Tax payed by sender",
     "block_height":  "Related to the transaction",
-    "timestamp": "1662170355"
+    "timestamp": "1662170355",
+    "view_transaction": null
   },
   {
     "from": "Sender",
@@ -30,7 +32,8 @@
     "tfuel_received": "In receiver wallet",
     "fee":  "Tax payed by sender",
     "block_height":  "Related to the transaction",
-    "timestamp": "1662170355"
+    "timestamp": "1662170355",
+    "view_transaction": null
   },
   {
     "from": "Sender",
@@ -41,7 +44,8 @@
     "tfuel_received": "In receiver wallet",
     "fee":  "Tax payed by sender",
     "block_height":  "Related to the transaction",
-    "timestamp": "1662170355"
+    "timestamp": "1662170355",
+    "view_transaction": null
   },
   {
     "from": "Sender",
@@ -52,10 +56,11 @@
     "tfuel_received": "In receiver wallet",
     "fee":  "Tax payed by sender",
     "block_height":  "Related to the transaction",
-    "timestamp": "1662170345"
+    "timestamp": "1662170345",
+    "view_transaction": null
   },
   {
-    "from": "Sender",
+    "from": "Sender1",
     "to": "Receiver",
     "theta_sent": "By sender wallet",
     "theta_received": "In receiver wallet",
@@ -63,6 +68,7 @@
     "tfuel_received": "In receiver wallet",
     "fee":  "Tax payed by sender",
     "block_height":  "Related to the transaction",
-    "timestamp": "1662170355"
+    "timestamp": "1662170355",
+    "view_transaction": null
   }
 ]
