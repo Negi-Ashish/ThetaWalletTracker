@@ -8,6 +8,9 @@ import RowSelectionTable from '../components/RowSelectionTable';
 import ColumnOrderTable from '../components/ColumnOrderTable';
 import HidingColumnTable from '../components/ColumnHidingTable';
 import WalletTracker from '../components/WalletTracker';
+import FAQ from '../components/FAQ';
+
+ 
 
 export default function Home() {
   return (
@@ -22,6 +25,7 @@ export default function Home() {
       {/* <RowSelectionTable /> */}
       {/* <ColumnOrderTable /> */}
       {/* <HidingColumnTable /> */}
+      <FAQ/>
     </div>
   );
 }
